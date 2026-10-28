@@ -1,0 +1,31 @@
+{
+  "push_enabled": {
+    "description": "启用定时推送",
+    "type": "bool",
+    "default": true
+  },
+  "push_times": {
+    "description": "每日推送时间（北京时间）",
+    "type": "string",
+    "default": "09:35,15:05",
+    "hint": "24 小时制，多个时间用英文逗号分隔，例如 09:35,14:55"
+  },
+  "push_groups": {
+    "description": "目标 QQ 群",
+    "type": "text",
+    "default": "",
+    "hint": "多个群号用逗号或换行分隔。也可填写完整会话 ID，例如 aiocqhttp:GroupMessage:123456789"
+  },
+  "platform_id": {
+    "description": "QQ 平台适配器 ID",
+    "type": "string",
+    "default": "aiocqhttp",
+    "hint": "纯群号会拼接为“适配器 ID:GroupMessage:群号”，通常无需修改；QQ 官方机器人接口不支持主动群推送"
+  },
+  "trading_day_only": {
+    "description": "仅周一至周五推送",
+    "type": "bool",
+    "default": true,
+    "hint": "仅排除周末，不包含法定节假日日历"
+  }
+}

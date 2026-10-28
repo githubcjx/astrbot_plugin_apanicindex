@@ -1,0 +1,5 @@
+name: astrbot_plugin_apanicindex
+desc: 获取 50ETF QVIX 恐慌指数，支持配置时间和 QQ 群定时推送
+version: 1.0.0
+author: githubcjx
+repo: https://github.com/githubcjx/astrbot_plugin_apanicindex
