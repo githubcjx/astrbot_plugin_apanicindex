@@ -29,13 +29,19 @@ def build_group_sessions(value: str, platform_id: str) -> list[str]:
 
 
 def volatility_level(value: float) -> str:
+    if value < 12:
+        return "极低波动，明显乐观（注意自满风险）"
     if value < 15:
-        return "低波动"
+        return "低波动，偏乐观"
+    if value < 20:
+        return "平静，正常偏低波动"
     if value < 25:
-        return "正常波动"
+        return "正常波动，略有谨慎"
     if value < 35:
-        return "波动偏高"
-    return "高波动 / 恐慌"
+        return "波动偏高，市场开始紧张"
+    if value < 50:
+        return "明显恐慌"
+    return "极度恐慌，通常对应剧烈行情"
 
 
 def format_index_message(result: QvixResult) -> str:

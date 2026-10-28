@@ -34,9 +34,22 @@ class PluginUtilsTests(unittest.TestCase):
         message = format_index_message(QvixResult(20.123, "14:56:00", now))
 
         self.assertIn("最新值：20.12", message)
-        self.assertIn("正常波动", message)
+        self.assertIn("正常波动，略有谨慎", message)
         self.assertIn("第三方指标", message)
-        self.assertEqual(volatility_level(36), "高波动 / 恐慌")
+
+    def test_maps_all_volatility_ranges(self):
+        cases = [
+            (11.99, "极低波动，明显乐观（注意自满风险）"),
+            (12, "低波动，偏乐观"),
+            (15.95, "平静，正常偏低波动"),
+            (20, "正常波动，略有谨慎"),
+            (25, "波动偏高，市场开始紧张"),
+            (35, "明显恐慌"),
+            (50, "极度恐慌，通常对应剧烈行情"),
+        ]
+        for value, expected in cases:
+            with self.subTest(value=value):
+                self.assertEqual(volatility_level(value), expected)
 
     def test_weekday_filter(self):
         self.assertTrue(is_weekday(datetime(2026, 10, 28)))
